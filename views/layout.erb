@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta http-equiv="content-script-type" content="text/javascript">
+  <title>LatticeCMS &ldquo;It's Made of People!&rdquo;</title>
+  <link type="text/css" href="lattice-assets/thirdparty/960Grid/reset.css" rel="stylesheet" />
+       <link type="text/css" href="lattice-assets/thirdparty/960Grid/960.css" rel="stylesheet" />
+       <link type="text/css" href="lattice-assets/css/lattice_cms.css" rel="stylesheet" />
+
+        <script type="text/javascript" src="/dev/Lattice-Development/views/js/latticesettings"></script>
+        <script type="text/javascript" src="lattice-assets/thirdparty/mootools/mootools.js"></script>
+        <script type="text/javascript" src="lattice-assets/thirdparty/mootools/mootools-more.js"></script>
+        <script type="text/javascript" src="lattice-assets/thirdparty/digitarald/fancyupload/Swiff.Uploader.js"></script>
+        <script type="text/javascript" src="lattice-assets/thirdparty/arian/datepicker/Picker.js"></script>
+        <script type="text/javascript" src="lattice-assets/thirdparty/arian/datepicker/Picker.Attach.js"></script>
+
+        <script type="text/javascript" src="lattice-assets/thirdparty/arian/datepicker/Picker.Date.js"></script>
+        <script type="text/javascript" src="lattice-assets/js/LatticeCore.js"></script>
+        <script type="text/javascript" src="lattice-assets/js/LatticeModules.js"></script>
+        <script type="text/javascript" src="lattice-assets/js/LatticeUI.js"></script>
+        <!--
+        <script type="text/javascript" src="lattice-assets/js/lattice_cms.js"></script>
+        -->
+        <script type="text/javascript">
+          if( !lattice.util.hasDOMReadyFired() ){
+            window.addEvent( "domready", function(){
+                lattice.util.DOMReadyHasFired();
+                //lattice.historyManager = new lattice.util.HistoryManager().instance();
+                //lattice.historyManager.init();
+                lattice.eventManager = new lattice.util.Broadcaster();
+                //lattice.modalManager = new lattice.ui.ModalManager();
+                //if( lattice.loginTimeout && lattice.loginTimeout > 0 ) lattice.loginMonitor = new lattice.util.LoginMonitor();
+                //lattice.util.EventManager.broadcastMessage( "resize" );
+                //lattice.CMS = new lattice.modules.CMS( 'cms' );
+                cms = new lattice.modules.Module('bucketCMS');
+                });
+          }
+        </script>
+
+        <script type="text/javascript" src="lattice-assets/js/list.js"></script>
+        <script type="text/javascript" src="lattice-assets/js/associator.js"></script>
+        </head>
+<body>
+
+Bucket CMS Layout Wrapper!!
+<br><br><br>
+
+<div class="pagesPane clearFix">
+
+      <div id="pageContainer" class="clearFix">
+
+Document view:
+<div id="bucketCMS" class="bucketCMS module page loc-en class-Module classPath-lattice_modules_Module">
+<%#= yield %>
+<%= @content %>
+</div>
+
+      </div>
+</div>
+
+end of it...
+
+
+</body>
+</html>

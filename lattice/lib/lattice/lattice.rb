@@ -40,6 +40,7 @@ module Lattice
       @value = value
       @label = attributes['label']
       @name = attributes['name']
+      @isMultiline = attributes['isMultiline']
     end
 
     def render

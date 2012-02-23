@@ -25,6 +25,9 @@
 			<elements>
 				<text name="textOne" label="Body1" isMultiline="true"/>
 				<text name="textTwo" label="Body2" isMultiline="true"/>
+				<text name="textwsso" label="Description" isMultiline="true"/>
+				<text name="textwsso" label="sdf asdf Description" isMultiline="true"/>
+				<text name="textofasdfsa" label="Whatever!" isMultiline="true"/>
 			</elements>
 		</objectType>
     <objectType name="editorOnlyObjectType" contentType="document" allowDelete="true" initialAccessRoles="editor" />

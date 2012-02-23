@@ -1,0 +1,3 @@
+[submodule "public/lattice-assets"]
+	path = public/lattice-assets
+	url = git@github.com:deepwinter/lattice-assets.git

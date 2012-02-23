@@ -6,7 +6,8 @@ get '/' do
 end
 
 get '/:id' do |id|
-  p Lattice::buildUIForDocumentType('textOnly')
+  @content = Lattice::buildUIForDocumentType('textOnly')
+  erb :layout #{ puts @content }
 end
 
 post '/addObject' do |id|
