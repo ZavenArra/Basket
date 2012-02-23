@@ -1,0 +1,10 @@
+<div data-field="<%=@name%>" <%if @isMultiline %>data-isMultiline="<%=@isMultiline%>"<%end%> class="ui-Text <%=@class%>">
+  <% if defined? @label %>
+		<label><%=@label%></label>
+	<%end%>
+	<% if @isMultiline %>
+		<textarea class="og <%=@tag%>"><%=(@value!=nil)?@value:""%></textarea>
+	<% else %>
+		<textarea class="og <%=@tag%>" rows="1"><%=(@value!=nil)?@value:""%></textarea>
+	<% end %>
+</div>
