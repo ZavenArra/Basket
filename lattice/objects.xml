@@ -27,6 +27,15 @@
 				<text name="textTwo" label="Body2" isMultiline="true"/>
 			</elements>
 		</objectType>
+
+		<objectType name="checkbox" contentType="document" allowDelete="true" >
+			<elements>
+				<checkbox name="textOne" label="Body1" />
+			</elements>
+		</objectType>
+
+
+
     <objectType name="editorOnlyObjectType" contentType="document" allowDelete="true" initialAccessRoles="editor" />
 
     <objectType name="singleAssociator" contentType="document" allowDelete="true" >
@@ -45,11 +54,7 @@
       <file name="file" label="File"/>
     </objectType>
 
-    <objectType name="checkbox">
-      <file name="checkbox" label="Checkbox"/>
-    </objectType>
-
-    <objectType name="radio">
+     <objectType name="radio">
         <radioGroup name="radioGroup" label="Radios!">
           <radio value="value1" label="Value1"/>
           <radio value="value2" label="Value2"/>

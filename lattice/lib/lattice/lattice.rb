@@ -23,6 +23,7 @@ module Lattice
     xml = Lattice::getXML
     #p xml.elements.each("//objectType") { |t| puts t.attributes["name"] }
 
+    p type
     objectTypesXPath = "//objectType[@name='"+type+"']"
     objectType = xml.elements[objectTypesXPath]
     if !objectType
@@ -38,7 +39,10 @@ module Lattice
       else 
         value = nil
       end
-      elementui = Lattice::ElementUI.new(uiElement.name, uiElement.attributes, value )
+      p 'ElementUI'+uiElement.name.capitalize
+      elementUIClass = Lattice.const_get('ElementUI'+uiElement.name.capitalize)
+      p elementUIClass
+      elementui = elementUIClass.new(uiElement.name, uiElement.attributes, value )
       ui += elementui.render()
     end
 
@@ -68,7 +72,7 @@ module Lattice
 
 
   #will need an elementUI for each type of UI
-  class ElementUI
+  module ElementUI
 
     def initialize(type, attributes, value)
       viewName = "ui_"+type
@@ -78,13 +82,29 @@ module Lattice
       @value = value
       @label = attributes['label']
       @name = attributes['name']
-      @isMultiline = attributes['isMultiline']
     end
 
     def render
       @view.result(binding) 
     end
 
+  end
+
+  class ElementUIText
+    extend ElementUI
+    include ElementUI
+
+    def initialize(type, attributes, value)
+      super type, attributes, value
+      @isMultiline = attributes['isMultiline']
+    end
+
+  end
+
+
+  class ElementUICheckbox
+    extend ElementUI
+    include ElementUI
   end
 
 end

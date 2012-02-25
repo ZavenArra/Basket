@@ -19,8 +19,8 @@ class TestThings < Test::Unit::TestCase
     end
 
     should "should build checkbox" do
-      HTMLChunks = Lattice::buildUIForDocumentType('checkbox')
-      assert_not_nil(HTMLChunks)
+      HTMLChunks2 = Lattice::buildUIForDocumentType('checkbox')
+      assert_not_nil(HTMLChunks2)
     end
   end
 
