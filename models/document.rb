@@ -8,9 +8,12 @@ class Document
   #Some of these should be configuratable in the config
   property   :title
   property   :lattice_document_type
+  property   :published
 
   view :all, :key => :title
   view :allByUpdated, :key => :updated_at
+  view :allPublishedByUpdated, :key => :updated_at, :conditions => 'doc.published === true'
+
 
   define_model_callbacks :save
  # validates :url, :presence => true

@@ -6,15 +6,31 @@ require_relative 'models/document.rb'
 require 'sinatra/logger'
 
 
-CouchPotato::Config.database_name = "documents"
+
+class Basket
+
+  CouchPotato::Config.database_name = "documents"
+
+  def Basket.getAllDocuments
+    @documents = CouchPotato.database.view Document.allByUpdated(:descending => true)
+  end
+
+  def Basket.getAllPublishedDocuments
+    @documents = CouchPotato.database.view Document.allPublishedByUpdated(:descending => true)
+  end
+
+  def Basket.deleteAllDocumentsForReal
+    # @documents.each() do |d|
+    #   CouchPotato.database.destroy_document d
+    # end
+    # @documents = nil
+  end
+
+
+end
 
 get '/' do
-
-  @documents = CouchPotato.database.view Document.allByUpdated(:descending => true)
- # @documents.each() do |d|
- #   CouchPotato.database.destroy_document d
- # end
- # @documents = nil
+  @documents = Basket::getAllPublishedDocuments
   @docTypes = Lattice::getDocumentTypes()
   erb :basket
 end
@@ -23,12 +39,14 @@ post '/addDocument' do
 
   document = Document.newWithType(params['lattice_document_type'])
   document.title = params[:title]
+  document.published = true
   CouchPotato.database.save_document document
   jData = Hash[ "id"=>document.id, "title"=>document.title] 
   jData.to_json
   redirect to('/'+document.id)
 
 end
+
 
 
 get '/:id' do |id|
@@ -41,7 +59,14 @@ get '/:id' do |id|
 end
 
 delete '/:id' do |id|
+end
 
+get '/unpublish/:id' do |id|
+  document = CouchPotato.database.load_document id
+  document.createProperties #initialization hand-off needs to be fixed
+  document.published = false
+  CouchPotato.database.save_document document
+  redirect to('/')
 end
 
 post '/saveField/:id' do |id|

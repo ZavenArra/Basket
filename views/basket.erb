@@ -20,6 +20,9 @@ Search: <input type="text" name="search"/><input type="submit"/>
 <div>
   <% @documents.each() do |document| %> 
     <a href="<%= document.id %>" target="_blank" ><%= document.id %> <%= document.title %></a>
+    <%if(document.published)%>
+        <a href="unpublish/<%= document.id %>" >Unpublish</a>
+    <%end%>
     <br>
    <% end %>
 </div>
