@@ -1,0 +1,27 @@
+
+basket view:
+<div id="basket" class="basket module page loc-en class-Module classPath-lattice_modules_Module">
+
+This is the basket!
+<br><br>
+Search: <input type="text" name="search"/><input type="submit"/>
+<br><br>
+<form action="addDocument" method="POST" target="_blank">
+  New Title: <input name="title" type="text">
+  Doc Type: 
+  <select name="lattice_document_type">
+  <%@docTypes.each() do |d|%>
+    <option value=<%= d %>><%= d %></option>
+  <%end%>
+  </select>
+  Add Document
+  <input type="submit"/>
+</form>
+<div>
+  <% @documents.each() do |document| %> 
+    <a href="<%= document.id %>" target="_blank" ><%= document.id %> <%= document.title %></a>
+    <br>
+   <% end %>
+</div>
+
+</div>

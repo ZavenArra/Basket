@@ -1,17 +1,46 @@
+require 'rubygems'
 require 'sinatra'
+require 'couch_potato'
 require_relative 'lattice/lib/lattice/lattice.rb'
+require_relative 'models/document.rb'
+require_relative 'models/test.rb'
+require 'sinatra/logger'
+
+
+CouchPotato::Config.database_name = "documents"
 
 get '/' do
-  erb :bucket
+
+  @documents = CouchPotato.database.view Document.allByUpdated(:descending => true)
+ # @documents.each() do |d|
+ #   CouchPotato.database.destroy_document d
+ # end
+ # @documents = nil
+  @docTypes = Lattice::getDocumentTypes()
+  erb :basket
 end
+
+post '/addDocument' do
+
+  document = Document.new(params['lattice_document_type'])
+  document.title = params[:title]
+  if params[:lattice_document_type] 
+    document.lattice_document_type = params[:lattice_document_type]
+  end
+  CouchPotato.database.save_document document
+  jData = Hash[ "id"=>document.id, "title"=>document.title] 
+  jData.to_json
+  redirect to('/'+document.id)
+  #redirect to('/')
+
+end
+
 
 get '/:id' do |id|
-  @content = Lattice::buildUIForDocumentType('textOnly')
-  erb :layout #{ puts @content }
-end
-
-post '/addObject' do |id|
-
+  document = CouchPotato.database.load_document id
+  @content = Lattice::buildUIForDocumentType(document.lattice_document_type, document)
+  @documentId = id
+  erb :document
 end
 
 delete '/:id' do |id|
@@ -19,13 +48,12 @@ delete '/:id' do |id|
 end
 
 post '/saveField/:id' do |id|
-  params[:field]
-  params[:value]
-end
-
-post '/saveFile/:id' do |id|
-  params[:field]
-  params[:value]
+  document = CouchPotato.database.load_document id
+  document.send "#{params[:field]}=", params[:value]
+  CouchPotato.database.save_document document
+  savedValue = document.send "#{params[:field]}"
+  jData = {'returnValue'=>true, 'response'=>{'value'=>savedValue}, 'params'=>params}
+  jData.to_json
 end
 
 get '/togglePublish/:id' do |id|

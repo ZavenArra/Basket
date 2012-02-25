@@ -4,9 +4,22 @@ require 'pathname'
 
 module Lattice 
 
+  @xml = nil
+  @elementsXPath = "elements/*"
+
+  def Lattice.getDocumentTypes()
+    xml = Lattice::getXML
+    objectTypesXPath = "//objectType"
+    objectTypes = xml.elements[objectTypesXPath]
+    types = []
+    xml.elements.each(objectTypesXPath) do |t|
+      types << t.attributes['name']
+    end
+    types
+  end 
 
   def Lattice.buildUIForDocumentType(type, values=nil)
-    xml = REXML::Document.new(File.open("objects.xml"))
+    xml = Lattice::getXML
     #p xml.elements.each("//objectType") { |t| puts t.attributes["name"] }
 
     objectTypesXPath = "//objectType[@name='"+type+"']"
@@ -18,14 +31,38 @@ module Lattice
     #need to get the object type from object here
 
     ui = ""
-    elementsXPath = "elements/*"
-    objectType.elements.each(elementsXPath) do |uiElement|
-      elementui = Lattice::ElementUI.new(uiElement.name, uiElement.attributes, nil)
+    objectType.elements.each(@elementsXPath) do |uiElement|
+      if(values)
+        value = values[uiElement.attributes['name']]
+      else 
+        value = nil
+      end
+      elementui = Lattice::ElementUI.new(uiElement.name, uiElement.attributes, value )
       ui += elementui.render()
     end
 
     p ui
 
+  end
+
+  def Lattice.getAttributesForDocumentType(type)
+    xml = Lattice::getXML
+    objectTypesXPath = "//objectType[@name='"+type+"']"
+    objectType = xml.elements[objectTypesXPath]
+
+    attributes = Array.new
+    objectType.elements.each(@elementsXPath) do |uiElement|
+      attributes <<  uiElement.attributes['name']
+    end
+    attributes
+
+  end 
+
+  def Lattice.getXML
+    if !@xml
+      @xml = REXML::Document.new(File.open("objects.xml"))
+    end
+    return @xml
   end
 
 
