@@ -1,4 +1,5 @@
-<div class="ui-Input <?=$class;?>" data-field="<?=$name;?>">
-	<?if(isset($label)):?><label><?=$label;?></label><?endif;?>
-	<input type="text" name="<?=$name;?>" value="<?=$value;?>" size="<?=$size;?>" />
+<div class="ui-Input <%=@class%>" data-field="<%=@name%>">
+<%if( defined?  @label )%>
+    <label><%=@label%></label><%end%>
+	<input type="text" name="<%=@name%>" value="<%=@value%>" size="<%=@size%>" />
 </div>

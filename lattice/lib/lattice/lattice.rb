@@ -1,6 +1,8 @@
+require 'rubygems'
 require 'rexml/document'
 require 'erb'
 require 'pathname'
+require 'sinatra-formhelpers'
 
 module Lattice 
 

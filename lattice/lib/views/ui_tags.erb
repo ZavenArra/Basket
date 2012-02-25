@@ -1,7 +1,4 @@
-<div class="ui-Tags clearFix" data-tags="<?=$tags;?>" data-field="tags">
-	<?/*if(isset($label)):?>
-		<label><?=$label;?></label>
-	<?endif;*/?>
+<div class="ui-Tags clearFix" data-tags="<%=@tags%>" data-field="tags">
 	<div class="container atRest">
 		<ul class='tokens clearFix'>
 			<li class='head'>
@@ -10,9 +7,9 @@
 				<a href="#" class="icon edit">edit</a>
 			</li>
 			<li class="token template"><span>Blank Token</span><a href="#" title="remove token" class='icon close'>remove token</a></li>
-			<?foreach($tags as $tag):?>
-			<li class="token"><span><?=$tag;?></span><a href="#" title="remove token" class='icon close'>remove token</a></li>
-			<?endforeach;?>
+			<%if$tags.each() as $tag):%>
+			<li class="token"><span><%=@tag%></span><a href="#" title="remove token" class='icon close'>remove token</a></li>
+			<%end%>
 		</ul>
 	</div>
 </div>

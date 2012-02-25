@@ -13,7 +13,6 @@
 			<elements>
 				<text name="mlutieliIP" label="Body" isMultiline="true"/>
         <image name="image" label="Single Image">
-          <resize name="test" width="96" height="58" forceDimension="height" /> 
           <ext>jpg</ext>
           <ext>tiff</ext>
           <ext>tif</ext>
@@ -32,6 +31,31 @@
 			</elements>
 		</objectType>
     <objectType name="editorOnlyObjectType" contentType="document" allowDelete="true" initialAccessRoles="editor" />
+
+    <objectType name="test" contentType="document">
+			<elements>
+        <text name="title" label="Title"/>
+        <file name="file" label="File">
+          <ext>jpg</ext>
+          <ext>tiff</ext>
+          <ext>tif</ext>
+        </file>
+        <image name="image" label="Single Image">
+          <ext>jpg</ext>
+          <ext>tiff</ext>
+          <ext>tif</ext>
+        </image>
+        <checkbox name="checkbox" label="Checkbox"/>
+        <radioGroup name="radioGroup" label="Radios!">
+          <radio value="value1" label="Value1"/>
+          <radio value="value2" label="Value2"/>
+        </radioGroup>
+        <pulldown name="pulldown" label="Pulldown">
+          <option value="value1" label="Value1"/>
+          <option value="value2" label="Value2"/>
+        </pulldown>
+
+    </objectType>
 
     <objectType name="singleAssociator" contentType="document" allowDelete="true" >
       <elements>
