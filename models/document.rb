@@ -38,7 +38,8 @@ class Document
 
 
   def createProperties
-    attributes = Lattice::getAttributesForDocumentType(@lattice_document_type)
+    p self.lattice_document_type
+    attributes = Lattice::getAttributesForDocumentType(self.lattice_document_type)
 
     #Create accessors
     attributes.each do |name|

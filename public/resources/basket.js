@@ -40,6 +40,14 @@ Basket = new Class({
 		return  "saveField/"+ this.element.getData( 'documentId' );
 	},
 	
+	getSaveFileSubmitURL: function(){
+		return  "saveFile/"+ this.element.getData( 'documentId' );
+	},
+	
+  getUploaderSWFUrl : function(){
+      return "lattice-resources/thirdparty/digitarald/fancyupload/Swiff.Uploader3.swf";
+  },
+	
 	getClearFieldURL: function(){
 		throw "Abstract function getClearFieldURL must be overriden in" + this.toString();		
 	},

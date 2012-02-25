@@ -3,7 +3,6 @@ require 'sinatra'
 require 'couch_potato'
 require_relative 'lattice/lib/lattice/lattice.rb'
 require_relative 'models/document.rb'
-require_relative 'models/test.rb'
 require 'sinatra/logger'
 
 
@@ -22,24 +21,22 @@ end
 
 post '/addDocument' do
 
-  document = Document.new(params['lattice_document_type'])
+  document = Document.newWithType(params['lattice_document_type'])
   document.title = params[:title]
-  if params[:lattice_document_type] 
-    document.lattice_document_type = params[:lattice_document_type]
-  end
   CouchPotato.database.save_document document
   jData = Hash[ "id"=>document.id, "title"=>document.title] 
   jData.to_json
   redirect to('/'+document.id)
-  #redirect to('/')
 
 end
 
 
 get '/:id' do |id|
   document = CouchPotato.database.load_document id
+  document.createProperties #initialization hand-off needs to be fixed
   @content = Lattice::buildUIForDocumentType(document.lattice_document_type, document)
   @documentId = id
+  @documentType = document.lattice_document_type
   erb :document
 end
 
@@ -49,6 +46,8 @@ end
 
 post '/saveField/:id' do |id|
   document = CouchPotato.database.load_document id
+  document.createProperties #initialization handoff problems
+
   document.send "#{params[:field]}=", params[:value]
   CouchPotato.database.save_document document
   savedValue = document.send "#{params[:field]}"
