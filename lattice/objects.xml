@@ -40,6 +40,21 @@
     <objectType name="meta">
     </objectType>
 
+
+    <objectType name="file">
+      <file name="file" label="File"/>
+    </objectType>
+
+    <objectType name="checkbox">
+      <file name="checkbox" label="Checkbox"/>
+    </objectType>
+
+    <objectType name="radio">
+        <radioGroup name="radioGroup" label="Radios!">
+          <radio value="value1" label="Value1"/>
+          <radio value="value2" label="Value2"/>
+        </radioGroup>
+    </objectType>
   </objectTypes>
 
 </configuration>

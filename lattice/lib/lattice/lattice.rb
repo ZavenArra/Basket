@@ -2,7 +2,6 @@ require 'rubygems'
 require 'rexml/document'
 require 'erb'
 require 'pathname'
-require 'sinatra-formhelpers'
 
 module Lattice 
 
@@ -27,7 +26,7 @@ module Lattice
     objectTypesXPath = "//objectType[@name='"+type+"']"
     objectType = xml.elements[objectTypesXPath]
     if !objectType
-      raise "Object type not found: " + article
+      raise "Object type not found: " + type
     end
     #p objectType.attributes["name"]
     #need to get the object type from object here

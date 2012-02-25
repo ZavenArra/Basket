@@ -51,6 +51,17 @@ class TestLattice < Test::Unit::TestCase
       CouchPotato.database.destroy_document document
     end
 
+    should "save checkbox fields" do
+      document = Document.newWithType('checkbox')
+      CouchPotato.database.save_document document
+      id = document.id
+      document = CouchPotato.database.load_document id
+      document.createProperties #hack
+      document.checkboxen = '1'
+      document.title ='MIN'
+      CouchPotato.database.save_document document
+    end
+
   end
 
 end

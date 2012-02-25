@@ -1,6 +1,6 @@
 <div class="ui-RadioGroup <%=@class%>" data-field="<%=@name%>">
-	<%if( defined? $groupLabel)%>
-		<label class="groupLabel"><%=@groupLabel;  $name; $label%></label>
+	<%if( defined? $label)%>
+		<label class="groupLabel"><%=@label%></label>
 	<%end%>
 	<fieldset>
 	<% $radios.each do |radioLabel,radioValue|%>

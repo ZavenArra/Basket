@@ -38,6 +38,7 @@ class Document
 
 
   def createProperties
+    p 'what'
     p self.lattice_document_type
     attributes = Lattice::getAttributesForDocumentType(self.lattice_document_type)
 

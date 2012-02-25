@@ -55,6 +55,12 @@ post '/saveField/:id' do |id|
   jData.to_json
 end
 
+post '/saveFile/:id' do |id|
+
+  jData = {'returnValue'=>true, 'response'=>{'value'=>'dummy'}, 'params'=>params}
+  jData.to_json
+end
+
 get '/togglePublish/:id' do |id|
 
 end

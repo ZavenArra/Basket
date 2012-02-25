@@ -30,6 +30,17 @@
 				<text name="textofasdfsa" label="Whatever!" isMultiline="true"/>
 			</elements>
 		</objectType>
+
+
+
+		<objectType name="checkbox" contentType="document" allowDelete="true" >
+			<elements>
+        <text name="title" label="Title"/>
+        <checkbox name="checkboxen" label="Checkbox"/>
+			</elements>
+		</objectType>
+
+
     <objectType name="editorOnlyObjectType" contentType="document" allowDelete="true" initialAccessRoles="editor" />
 
     <objectType name="test" contentType="document">
@@ -54,6 +65,7 @@
           <option value="value1" label="Value1"/>
           <option value="value2" label="Value2"/>
         </pulldown>
+      </elements>
 
     </objectType>
 
@@ -63,6 +75,24 @@
           <filter objectTypeName="article"/>
         </associator>
       </elements>
+    </objectType>
+
+
+    <objectType name="asdfasd">
+        <text name="title" label="Title"/>
+    </objectType>
+
+
+    <objectType name="file">
+      <file name="file" label="File"/>
+    </objectType>
+
+
+    <objectType name="radio">
+        <radioGroup name="radioGroup" label="Radios!">
+          <radio value="value1" label="Value1"/>
+          <radio value="value2" label="Value2"/>
+        </radioGroup>
     </objectType>
 
     <objectType name="meta">

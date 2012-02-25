@@ -45,13 +45,9 @@ Basket = new Class({
 	},
 	
   getUploaderSWFUrl : function(){
-      return "lattice-resources/thirdparty/digitarald/fancyupload/Swiff.Uploader3.swf";
+    return "lattice-resources/thirdparty/digitarald/fancyupload/Swiff.Uploader3.swf";
   },
 	
-	getClearFieldURL: function(){
-		throw "Abstract function getClearFieldURL must be overriden in" + this.toString();		
-	},
-
 	getClearFieldURL: function(){
 		throw "Abstract function getClearFieldURL must be overriden in" + this.toString();		
 	},

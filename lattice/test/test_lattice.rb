@@ -18,7 +18,9 @@ class TestThings < Test::Unit::TestCase
       assert_not_nil(HTMLChunks)
     end
 
-    should "not return empty array" do
+    should "should build checkbox" do
+      HTMLChunks = Lattice::buildUIForDocumentType('checkbox')
+      assert_not_nil(HTMLChunks)
     end
   end
 

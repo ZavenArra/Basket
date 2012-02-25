@@ -4,9 +4,9 @@
 		<input type="file" class="hidden" />
 
 		<%if( defined? @value['id'] )%>
-			<p class="fileName <%=@extensions.sub(',','')%>"><%=@value['filename']%></p>
+			<p class="fileName <%#=@extensions.sub(',','')%>"><%=@value['filename']%></p>
 		<%else%>
-			<p class="fileName <%=@extension.sub(',','')%>">No image uploaded yet&hellip;</p>			
+			<p class="fileName <%#=@extension.sub(',','')%>">No image uploaded yet&hellip;</p>			
 		<%end%>
 		<div class="preview">
 			<%if( defined? @value['id'])%>
