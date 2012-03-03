@@ -72,7 +72,7 @@ module Lattice
 
 
   #will need an elementUI for each type of UI
-  module ElementUI
+  class ElementUI
 
     def initialize(type, attributes, value)
       viewName = "ui_"+type
@@ -90,9 +90,7 @@ module Lattice
 
   end
 
-  class ElementUIText
-    extend ElementUI
-    include ElementUI
+  class ElementUIText < ElementUI
 
     def initialize(type, attributes, value)
       super type, attributes, value
@@ -102,9 +100,7 @@ module Lattice
   end
 
 
-  class ElementUICheckbox
-    extend ElementUI
-    include ElementUI
+  class ElementUICheckbox < ElementUI
   end
 
 end
